@@ -70,10 +70,3 @@ Each platform column is colour-coded via CSS `[data-provider]` attribute selecto
 To add a new provider, just add a new `data-provider` block in `App.css` — no JS changes needed.
 
 ---
-
-## Key Decisions & Notes
-
-- `index.css` is now imported in `main.jsx` (it was commented out before — the dark Vite default conflicted with the light app theme)
-- `src/Untitled` is a stale duplicate of `locationUtils.jsx` — safe to delete
-- `onSearch` / `isSearching` props previously passed from `App` to `SearchContainer` were unused; they have been removed; `SearchContainer` manages its own loading state
-- Vite base path is `/sastamaal/` (was `/SastaKart/`)
