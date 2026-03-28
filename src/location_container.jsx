@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import SastaKartLogo from "./assets/sastakart.svg"
+import SastamaalLogo from "./assets/sastamaal.svg"
 import {
   getLocationFromCookie,
   setLocationCookie,
@@ -60,7 +60,7 @@ export function LocationContainer({ location, setLocation }) {
 
   return (
     <div className="top-bar">
-      <img src={SastaKartLogo} alt="Sastamaal" className="app-logo" />
+      <img src={SastamaalLogo} alt="Sastamaal" className="app-logo" />
 
       <div className="location-input-wrapper">
         <input
