@@ -24,26 +24,28 @@ export function SearchContainer() {
 
   return (
     <div className="search-container">
-      <p className="search-title">
-        Compare prices across Blinkit, Zepto &amp; Instamart
-      </p>
+      <div className="search-form">
+        <p className="search-title">
+          Compare prices across Blinkit, Zepto &amp; Instamart
+        </p>
 
-      <input
-        className="search-input"
-        type="text"
-        placeholder="Search for milk, eggs, atta..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-      />
+        <input
+          className="search-input"
+          type="text"
+          placeholder="Search for milk, eggs, atta..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+        />
 
-      <button
-        className="search-button"
-        onClick={handleSearch}
-        disabled={isLoading}
-      >
-        {isLoading ? "Searching..." : "Search"}
-      </button>
+        <button
+          className="search-button"
+          onClick={handleSearch}
+          disabled={isLoading}
+        >
+          {isLoading ? "Searching..." : "Search"}
+        </button>
+      </div>
 
       <ResultsContainer isLoading={isLoading} results={results} />
     </div>

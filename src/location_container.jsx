@@ -46,15 +46,22 @@ export function LocationContainer({ location, setLocation }) {
           setLocationCookie({ lat, lon, address })
           setLocation(address)
         } catch (err) {
-          alert("Failed to fetch address")
+          alert("Failed to fetch address. Please check your internet connection.")
         } finally {
           setLoading(false)
         }
       },
-      () => {
-        alert("Permission denied")
+      (err) => {
+        if (err.code === 1) {
+          alert("Location permission denied. Please allow location access in your browser settings.")
+        } else if (err.code === 2) {
+          alert("Location unavailable. Please check your GPS or network connection.")
+        } else {
+          alert("Location request timed out. Please try again.")
+        }
         setLoading(false)
-      }
+      },
+      { enableHighAccuracy: false, timeout: 10000, maximumAge: 60000 }
     )
   }
 

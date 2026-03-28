@@ -5,6 +5,7 @@ import { SearchContainer } from "./search_container"
 
 function App() {
   const [location, setLocation] = useState("")
+  const [warnDismissed, setWarnDismissed] = useState(false)
 
   return (
     <div className="app">
@@ -17,6 +18,13 @@ function App() {
       </header>
 
       <SearchContainer />
+
+      {!warnDismissed && (
+        <div className="backend-warning">
+          <span>⚠️ Backend is currently down — results are demo data only. Will be fixed soon!</span>
+          <button className="warning-dismiss" onClick={() => setWarnDismissed(true)}>✕</button>
+        </div>
+      )}
     </div>
   )
 }
