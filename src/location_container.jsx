@@ -60,7 +60,7 @@ export function LocationContainer({ location, setLocation }) {
 
   return (
     <div className="top-bar">
-      <img src={SastaKartLogo} alt="SastaKart" className="app-logo" />
+      <img src={SastaKartLogo} alt="Sastamaal" className="app-logo" />
 
       <div className="location-input-wrapper">
         <input

@@ -24,16 +24,17 @@ export function SearchContainer() {
 
   return (
     <div className="search-container">
-      <h1 className="search-title">
-        Search Cheapest Items across all platforms
-      </h1>
+      <p className="search-title">
+        Compare prices across Blinkit, Zepto &amp; Instamart
+      </p>
 
       <input
         className="search-input"
         type="text"
-        placeholder="Search items..."
+        placeholder="Search for milk, eggs, atta..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
       />
 
       <button
@@ -79,12 +80,15 @@ function ResultsContainer({ isLoading, results }) {
   
 function ProviderColumn({ provider, items }) {
 return (
-    <div className="provider-column">
-    <h3 className="provider-title">{provider}</h3>
-
-    {items.map((item, index) => (
-        <ProductCard key={index} item={item} />
-    ))}
+    <div className="provider-column" data-provider={provider}>
+    <div className="provider-header">
+      <h3 className="provider-title">{provider}</h3>
+    </div>
+    <div className="provider-items">
+      {items.map((item, index) => (
+          <ProductCard key={index} item={item} />
+      ))}
+    </div>
     </div>
 )
 }

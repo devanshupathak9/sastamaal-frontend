@@ -1,60 +1,90 @@
-# 🛒 Sastamaal Frontend
+# Sastamaal Frontend
 
-**Sastamaal** is a React (Vite) based frontend application that enables users to search for products and compare prices across multiple quick-commerce platforms such as Blinkit, Zepto, and Instamart.
+**Sastamaal** is a React (Vite) based frontend that lets users search for products and compare prices across quick-commerce platforms — Blinkit, Zepto, and Instamart — side by side.
 
-The application automatically detects the user's location using the browser's Geolocation API, converts coordinates into a human-readable address via OpenStreetMap, and uses this context for searches.
+The app automatically detects the user's location via the browser Geolocation API, reverse-geocodes it using OpenStreetMap, and stores it in cookies for subsequent searches.
+
+**Live app:** https://sastamaal.vercel.app
 
 ---
 
-## 📍 Location Handling Logic
+## Features
 
-**On application load:**
-- The app checks cookies for `lat`, `lon`, and `address`
-- If not found, defaults to:
+- Side-by-side price comparison across Blinkit, Zepto, and Instamart
+- Automatic location detection with fallback to Gurgaon, Haryana
+- Skeleton loading animation while fetching results
+- Platform-specific colour-coded result columns
+- Enter key support in the search box
+- Responsive layout (mobile-friendly)
+
+---
+
+## Location Handling
+
+**On load:**
+- App reads `lat`, `lon`, `address` from cookies
+- If absent, defaults to:
 ```json
 {
-    "lat": "28.4646148",
-    "lon": "77.0299194",
-    "address": "Gurgaon, Haryana, India"
+  "lat": "28.4646148",
+  "lon": "77.0299194",
+  "address": "Gurgaon, Haryana, India"
 }
 ```
 
 **When "Get Location" is clicked:**
-- Browser Geolocation API fetches latitude and longitude
-- Reverse geocoding via OpenStreetMap: `https://nominatim.openstreetmap.org/reverse?format=json&lat={lat}&lon={lon}`
-- Address saved to cookies and UI updates immediately
+- Browser Geolocation API fetches coordinates
+- Reverse geocoding via OpenStreetMap Nominatim:
+  `https://nominatim.openstreetmap.org/reverse?format=json&lat={lat}&lon={lon}`
+- Result saved to cookies (1-year expiry)
 
 ---
 
-## 🧱 Tech Stack
+## Backend Integration
 
-- **Frontend:** React + Vite
-- **Styling:** CSS
-- **Location:** Browser Geolocation API
-- **Reverse Geocoding:** OpenStreetMap (Nominatim)
-- **Hosting:** AWS S3 (Static Website Hosting)
-- **CDN:** AWS CloudFront (Planned)
+The search currently uses `fakeSearchApi()` (demo data with a 2 s delay).
+
+When the backend is ready, switch to `realSearchApi()` in `search_container.jsx`:
+1. Set `SEARCH_API_URL` to your backend endpoint
+2. Replace `fakeSearchApi(query)` with `realSearchApi(query)` in `handleSearch`
+
+Expected backend response format:
+```json
+[
+  {
+    "provider": "Blinkit",
+    "items": [
+      { "name": "...", "price": "₹99", "offerPrice": "₹79", "Image": "..." }
+    ]
+  },
+  { "provider": "Zepto", "items": [...] },
+  { "provider": "Instamart", "items": [...] }
+]
+```
 
 ---
 
-## 🚀 Getting Started
+## Tech Stack
 
-### Prerequisites
-- Node.js v18+
-- npm
+| Layer | Technology |
+|---|---|
+| Frontend | React 19 + Vite |
+| Styling | CSS (no library) |
+| Location | Browser Geolocation API |
+| Geocoding | OpenStreetMap Nominatim |
+| Hosting | Vercel |
 
-### Installation
+---
+
+## Getting Started
+
 ```bash
 npm install
 npm run dev
 ```
 
-App available at: `http://localhost:5173`
+App runs at `http://localhost:5173`
 
-### Build for Production
 ```bash
-npm run build
+npm run build   # production build → dist/
 ```
-
-Generates `dist/` folder with static assets.
-<hr>

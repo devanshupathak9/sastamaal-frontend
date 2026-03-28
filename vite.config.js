@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/SastaKart/",
+  base: "/sastamaal/",
   server: {
     allowedHosts: ['valene-downier-melodie.ngrok-free.dev']
   }
