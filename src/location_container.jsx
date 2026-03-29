@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import SastamaalLogo from "./assets/sastamaal.svg"
+import SastamaalLogo from "./assets/sastamaal.png"
 import {
   getLocationFromCookie,
   setLocationCookie,
